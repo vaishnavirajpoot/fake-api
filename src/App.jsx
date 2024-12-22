@@ -12,17 +12,18 @@ function App() {
     setnewData(response.data);
   };
 
-
   const removeFromCartHandler = (productId) => {
     setCart((prevCart) => {
-      const index = prevCart.findIndex(item => item.id === productId); 
-      if (index !== -1) { 
-        updatedCart.splice(index, 1); 
+      const index = prevCart.findIndex((item) => item.id === productId); 
+      if (index !== -1) {
+        const updatedCart = [...prevCart]; 
+        updatedCart.splice(index, 1);
         return updatedCart; 
       }
       return prevCart; 
     });
   };
+  
   
 
   const addToCartHandler = (product) => {
@@ -80,7 +81,7 @@ function App() {
        
         <div>
           {cart.length === 0 ? (
-            <p className="text-white">Your cart is empty!</p>
+            <p className="text-white ml-4">Your cart is empty!</p>
           ) : ( 
             cart.map((item, index) => (
               <div key={index} className="p-2 bg-gray-400 rounded-md shadow-slate-100 h-fit w-[260px] ml-6 mb-1 mt-2 px-4">
